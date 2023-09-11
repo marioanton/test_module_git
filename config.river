@@ -25,5 +25,5 @@
         regex = "gitlab_runner_api_request_duration_seconds_bucket"
         action = "keep"
       }
-      forward_to = [write_to]
+      forward_to = [argument.write_to.value]
     }
