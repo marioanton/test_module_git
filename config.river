@@ -1,0 +1,26 @@
+    discovery.relabel "gitlab_runners" {
+      targets = discovery.kubernetes.services.targets
+      rule {
+        source_labels = ["__meta_kubernetes_namespace"]
+        regex = "gitlab-runner"
+        action = "keep"
+      }
+    }
+
+    prometheus.scrape "gitlab_runners" {
+      job_name   = "gitlab_runners"
+      targets  = discovery.relabel.gitlab_runners.output
+      forward_to = [prometheus.relabel.gitlab_runners.receiver]
+      clustering {
+        enabled = true
+      }
+    }
+
+    prometheus.relabel "gitlab_runners" {
+      rule {
+        source_labels = ["__name__"]
+        regex = "gitlab_runner_api_request_duration_seconds_bucket"
+        action = "keep"
+      }
+      forward_to = [prometheus.remote_write.grafana_cloud_prometheus.receiver]
+    }
