@@ -1,2 +1,4 @@
-{ gitlab_runner: "gitlab_runner_api_request_duration_seconds_bucket"}
+{ 
+  gitlab_runner: "gitlab_runner_api_request_duration_seconds_bucket"
+}
 
