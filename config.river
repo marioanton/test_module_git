@@ -1,3 +1,6 @@
+    argument "write_to" {
+      optional = false
+    }
     discovery.relabel "gitlab_runners" {
       targets = discovery.kubernetes.pods.targets
       rule {
@@ -22,5 +25,5 @@
         regex = "gitlab_runner_api_request_duration_seconds_bucket"
         action = "keep"
       }
-      forward_to = [prometheus.remote_write.grafana_cloud_prometheus.receiver]
+      forward_to = [write_to]
     }
