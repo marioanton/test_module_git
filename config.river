@@ -2,7 +2,7 @@
       optional = false
     }
 
-    argument "pods" {
+    argument "targets" {
       optional = false
     }
 
