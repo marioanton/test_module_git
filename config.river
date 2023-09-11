@@ -1,5 +1,5 @@
     discovery.relabel "gitlab_runners" {
-      targets = discovery.kubernetes.services.targets
+      targets = discovery.kubernetes.pods.targets
       rule {
         source_labels = ["__meta_kubernetes_namespace"]
         regex = "gitlab-runner"
