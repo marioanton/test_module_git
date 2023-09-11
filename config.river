@@ -1,8 +1,13 @@
     argument "write_to" {
       optional = false
     }
+
+    argument "pods" {
+      optional = false
+    }
+
     discovery.relabel "gitlab_runners" {
-      targets = discovery.kubernetes.pods.targets
+      targets = argument.pods.value
       rule {
         source_labels = ["__meta_kubernetes_namespace"]
         regex = "gitlab-runner"
