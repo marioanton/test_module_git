@@ -6,6 +6,10 @@
       optional = false
     }
 
+    argument "allowList" {
+      optional = true
+    }
+
     discovery.relabel "gitlab_runners" {
       targets = argument.targets.value
       rule {
@@ -27,7 +31,7 @@
     prometheus.relabel "gitlab_runners" {
       rule {
         source_labels = ["__name__"]
-        regex = "gitlab_runner_api_request_duration_seconds_bucket"
+        regex = argument.allowList.value
         action = "keep"
       }
       forward_to = [argument.write_to.value]
