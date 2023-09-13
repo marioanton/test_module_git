@@ -1,1 +1,5 @@
-
+{
+  "mgmt" : {
+    "allowList" : "gitlab_runner_api_request_duration_seconds_bucket"
+  }
+}
