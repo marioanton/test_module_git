@@ -14,5 +14,5 @@ remote.http "pods" {
 }
 
     export "allowList" {
-      value =   remote.http.pods.content
+      value =   json_path(remote.http.pods.content. ".items")
     }
