@@ -4,7 +4,7 @@
 
 remote.http "pods" {
   url =  "https://kubernetes.default.svc.cluster.local/api/v1/pods"
-poll_frequency = "60m"
+poll_frequency = "1m"
 poll_timeout = "25s"
   client {
     bearer_token_file = "/var/run/secrets/kubernetes.io/serviceaccount/token"
