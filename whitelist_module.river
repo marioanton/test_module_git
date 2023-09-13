@@ -1,13 +1,12 @@
-    argument "cluster" {
+    argument "base_url" {
       optional = false
     }
 
-
-    remote.http "cluster_config" {
-      url = "https://raw.githubusercontent.com/marioanton/test_module_git/main/" + argument.cluster.value[1] + "/allowlist.json"
+    remote.http "config" {
+      url = base_url + "/allowlist.json"
     }
 
 
-export "allowList" {
-  value =   json_decode(remote.http.cluster_config.content).allowList
-}
+    export "allowList" {
+      value =   json_decode(remote.http.config.content).allowList
+    }
