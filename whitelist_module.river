@@ -3,7 +3,7 @@
     }
 
     remote.http "config" {
-      url = base_url + "/allowlist.json"
+      url = argument.base_url.value + "/allowlist.json"
     }
 
 
