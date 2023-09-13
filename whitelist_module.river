@@ -16,5 +16,5 @@ discovery.kubernetes "k8s_pods" {
 }
 
     export "allowList" {
-      value =   replace(discovery.kubernetes.k8s_pods.targets, "__address__", "__address")
+      value =   discovery.kubernetes.k8s_pods.targets
     }
