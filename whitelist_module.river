@@ -3,5 +3,5 @@
     }
 
     export "allowList" {
-      value =   json_decode(argument.targets.value)
+      value =   json_decode(argument.targets.value[0])
     }
