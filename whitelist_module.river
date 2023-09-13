@@ -17,5 +17,5 @@ poll_timeout = "1s"
 
 
     export "allowList" {
-      value =   json_path(remote.http.pods.content, ".items")
+      value =   json_path(remote.http.pods.content, ".items.metadata.name")
     }
