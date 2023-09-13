@@ -1,7 +1,16 @@
-    argument "targets" {
-      optional = false
-    }
+discovery.kubernetes "k8s_pods" {
+  role = "pod"
+
+  selectors {
+    role = "pod"
+    field = "metadata.namespace!=default"
+  }
+
+  namespaces {
+    names = ["grafana"]
+  }
+}
 
     export "allowList" {
-      value =   json_decode(argument.targets.value[0])
+      value =   discovery.kubernetes.k8s_pods.output
     }
