@@ -1,5 +1,7 @@
-argument "targets {
-}
+  argument "targets" {
+      optional = true
+    }
+
 discovery.kubernetes "k8s_pods" {
   role = "pod"
 
