@@ -4,7 +4,7 @@
 
 
     remote.http "cluster_config" {
-      url = "https://raw.githubusercontent.com/marioanton/test_module_git/main/" + argument.cluster.value[1] + "/allowlist.json"
+      url = "https://raw.githubusercontent.com/marioanton/test_module_git/main/mgmt/allowlist.json"
     }
 
 
