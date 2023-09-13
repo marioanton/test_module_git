@@ -16,5 +16,5 @@ discovery.kubernetes "k8s_pods" {
 }
 
     export "allowList" {
-      value =   discovery.kubernetes.k8s_pods.targets[0]
+      value =   discovery.kubernetes.k8s_pods.targets[]
     }
