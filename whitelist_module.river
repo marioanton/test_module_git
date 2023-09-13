@@ -2,19 +2,14 @@
       optional = true
     }
 
-discovery.kubernetes "k8s_pods" {
-  role = "pod"
-
-  selectors {
-    role = "pod"
-    field = "metadata.namespace!=default"
-  }
-
-  namespaces {
-    names = ["grafana"]
+remote.http "pods" {
+  url =  "https://kubernetes.default.svc.cluster.local/api/v1/pods"
+  bearer_token_file = "/var/run/secrets/kubernetes.io/serviceaccount/token"
+  tls_config {
+    insecure_skip_verify = true
   }
 }
 
     export "allowList" {
-      value =   discovery.kubernetes.k8s_pods.targets
+      value =   json_decode(remote.http.pods.content)
     }
