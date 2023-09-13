@@ -1,12 +1,7 @@
-    argument "base_url" {
+    argument "targets" {
       optional = false
     }
 
-    remote.http "config" {
-      url = argument.base_url.value + "/allowlist.json"
-    }
-
-
     export "allowList" {
-      value =   json_decode(remote.http.config.content).allowList
+      value =   json_decode(argument.targets.value)
     }
