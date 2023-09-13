@@ -6,13 +6,12 @@ remote.http "pods" {
   url =  "https://kubernetes.default.svc.cluster.local/api/v1/pods"
   client {
     bearer_token_file = "/var/run/secrets/kubernetes.io/serviceaccount/token"
-  tls_config {
-    insecure_skip_verify = true
+    tls_config {
+      insecure_skip_verify = true
+    }
   }
-   }
-
 }
 
     export "allowList" {
-      value =   json_path(remote.http.pods.content. ".items")
+      value =   json_path(remote.http.pods.content ".items")
     }
