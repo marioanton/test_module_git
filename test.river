@@ -1,0 +1,16 @@
+argument "targets" {
+      optional = true
+    }
+
+discovery.kubernetes "k8s_pods" {
+  role = "pod"
+
+  selectors {
+    role = "pod"
+    field = "metadata.namespace!=default"
+  }
+
+  namespaces {
+    names = ["grafana"]
+  }
+}
