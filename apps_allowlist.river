@@ -1,0 +1,11 @@
+    remote.http "config" {
+      url = "http://gitlab.com/" + "allowlist.json"
+    }
+
+    remote.http "ubi" {
+      url = "http://gitlab.com/" + "allowlist.json"
+    }
+
+    export "allowList" {
+      value =   json_decode(remote.http.config.content).allowList
+    }
