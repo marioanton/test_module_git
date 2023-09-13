@@ -1,21 +1,13 @@
-
-    remote.http "gitlab_config" {
-      url = "https://raw.githubusercontent.com/marioanton/test_module_git/main/" + "whitelists.river.json"
+    argument "cluster" {
+      optional = false
     }
 
 
-    remote.http "gitlab_config1" {
-      url = "https://raw.githubusercontent.com/marioanton/test_module_git/main/" + "whitelists.river.json"
-    }
-
-
-    remote.http "gitlab_config2" {
-      url = "https://raw.githubusercontent.com/marioanton/test_module_git/main/" + "whitelists.river.json"
+    remote.http "cluster_config" {
+      url = "https://raw.githubusercontent.com/marioanton/test_module_git/main/" + cluster + "/whitelists.river.json"
     }
 
 
 export "allowList" {
-  value =   json_decode(remote.http.gitlab_config.content).allowList + "|" + 
-            json_decode(remote.http.gitlab_config1.content).allowList + "|" + 
-            json_decode(remote.http.gitlab_config2.content).allowList
+  value =   json_decode(remote.http.cluster_config.content).allowList
 }
