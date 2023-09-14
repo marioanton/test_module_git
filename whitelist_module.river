@@ -9,9 +9,6 @@ poll_timeout = "25s"
     }
   }
 }
-
-
-
     export "allowList" {
       value = join(json_path(remote.http.pods.content, ".items[*].metadata.annotations.keepMetrics"), "|")
     }
