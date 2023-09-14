@@ -1,0 +1,11 @@
+argument "base_url" {
+  optional = false
+}
+
+remote.http "config" {
+  url = base_url + "/allowlist.json"
+}
+
+export "allowList" {
+  value =   json_decode(remote.http.config.content).allowList
+}
