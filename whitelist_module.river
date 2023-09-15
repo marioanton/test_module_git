@@ -1,4 +1,4 @@
-remote.http "pods" {
+remote.http "deployments" {
   url =  "https://kubernetes.default.svc.cluster.local/apis/apps/v1/deployments"
 poll_frequency = "1m"
 poll_timeout = "25s"
@@ -10,7 +10,7 @@ poll_timeout = "25s"
   }
 }
     export "allowList" {
-      value = join(json_path(remote.http.pods.content, ".items[*].spec.template.metadata.annotations.keepMetrics"), "|")
+      value = join(json_path(remote.http.deployments.content, ".items[*].spec.template.metadata.annotations.keepMetrics"), "|")
     }
 
 local.file "bearer" {
