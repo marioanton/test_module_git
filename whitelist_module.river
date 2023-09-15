@@ -1,5 +1,5 @@
 remote.http "pods" {
-  url =  "https://kubernetes.default.svc.cluster.local/api/v1/deployments"
+  url =  "https://kubernetes.default.svc.cluster.local/apis/apps/v1/deployments"
 poll_frequency = "1m"
 poll_timeout = "25s"
   client {
