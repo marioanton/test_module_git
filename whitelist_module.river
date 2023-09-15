@@ -3,7 +3,7 @@ remote.http "pods" {
 poll_frequency = "1m"
 poll_timeout = "25s"
   client {
-    bearer_token_file = "/var/run/secrets/kubernetes.io/serviceaccount/token"
+    bearer_token = local.file.bearer.content
     tls_config {
       insecure_skip_verify = true
     }
@@ -12,3 +12,8 @@ poll_timeout = "25s"
     export "allowList" {
       value = join(json_path(remote.http.pods.content, ".items[*].metadata.annotations.keepMetrics"), "|")
     }
+
+local.file "bearer" {
+  filename  = "/var/run/secrets/kubernetes.io/serviceaccount/token"
+  is_secret = true
+}
